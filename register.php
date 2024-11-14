@@ -14,8 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
     try {
-        $stmt = $conn->prepare("INSERT INTO registrations (RegistrationID, ParticipantName, Email, Contact, Password, WorkshopID, RegistrationDate) 
-                                VALUES (:registration_id, :name, :email, :contact, :password, :workshop_id, NOW())");
+        $stmt = $conn->prepare("INSERT INTO registrations VALUES (:registration_id, :name, :email, :contact, :password, :workshop_id, NOW())");
         $stmt->bindParam(':registration_id', $registration_id);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
@@ -26,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $stmt->execute();
         $message = "Workshop added successfully!";
-        header("Location: /view/login_form_ui.php");
         $alert_type = "success";
+        header("Location: view/login_form_ui.php");
     } catch (PDOException $e) {
         $message = "Error: " . $e->getMessage();
+        $alert_type = "error";
         header("Location: index.php");
-        $alert_type = "error"; 
     }
 }
 ?>

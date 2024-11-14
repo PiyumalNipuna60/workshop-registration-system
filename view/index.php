@@ -1,5 +1,5 @@
 <?php
-include('db.php');
+include('../db.php');
 
 $stmt = $conn->prepare("SELECT MAX(RegistrationID) + 1 AS nextID FROM registrations");
 $stmt->execute();
@@ -24,7 +24,7 @@ if (!$nextRegistrationID) {
     <div class="form-container">
         <h1>Workshop Registration</h1>
 
-        <form id="registrationForm" action="login_form_ui.php" method="POST">
+        <form id="registrationForm" method="POST" action="../register.php">
             <label for="registration_id">Registration ID:</label>
             <input type="text" id="registration_id" name="registration_id" value="<?php echo $nextRegistrationID; ?>"
                 readonly>
@@ -62,7 +62,7 @@ if (!$nextRegistrationID) {
             </div>
         </form>
         <div id="alertMessage" class="alert <?php echo $alert_type; ?>">
-            <?php echo $message; ?>
+            <!-- <?php echo $message; ?> -->
         </div>
         <br>
     </div>

@@ -24,7 +24,7 @@ if (!$nextRegistrationID) {
     <div class="form-container">
         <h1>Workshop Registration</h1>
 
-        <form id="registrationForm" method="POST">
+        <form id="registrationForm" method="POST" action="register.php">
             <label for="registration_id">Registration ID:</label>
             <input type="text" id="registration_id" name="registration_id" value="<?php echo $nextRegistrationID; ?>"
                 readonly>

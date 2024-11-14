@@ -9,21 +9,22 @@
 <body>
     <div class="form-container">
         <h1>Login</h1>
-        <form method="POST">
+        <form method="POST" action="../login.php">
             <label for="registration_id">Registration ID:</label>
-            <input  type="text" id="registration_id" name="registration_id"  required><br><br>
+            <input type="text" id="registration_id" name="registration_id" required><br><br>
             
             <label for="password">Password:</label>
-            <input  type="password" id="password" name="password" placeholder="*****" required><br><br>
+            <input type="password" id="password" name="password" placeholder="*****" required><br><br>
 
-        
             <div id="allButton">
-            <button type="submit">Login</button>
+                <button type="submit">Login</button>
                 <div>
-                    <a>Create account?</a>
-                    <a href="../index.php"><button type="button">Register</button></a>
+                    <a href="../index.php">Create account?</a>
                 </div>
             </div>
+            <?php if (isset($_GET['error'])): ?>
+                <p style="color: red;"><?php echo htmlspecialchars($_GET['error']); ?></p>
+            <?php endif; ?>
         </form>
     </div>
 </body>

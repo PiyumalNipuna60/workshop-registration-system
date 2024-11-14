@@ -1,7 +1,6 @@
 <?php
+session_start();
 include('db.php');
-$message = '';
-$alert_type = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $registration_id = $_POST['registration_id'];
@@ -19,22 +18,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $alert_type = "success";
                 
                 session_start();
-                $_SESSION['user_id'] = $user['ParticipantID'];
+                $_SESSION['user_id'] = $user['RegistrationID'];
                 $_SESSION['name'] = $user['ParticipantName'];
-
-                header("Location: dashboard.php");
-                exit();
+                $_SESSION['user_email'] = $user['Email'];
+                header("Location: view/user_dashboard_form_ui.php");
+            exit();
             } else {
                 $message = "Incorrect password.";
                 $alert_type = "error";
+                header("Location: view/login_form_ui.php?error=Invalid credentials");
             }
         } else {
             $message = "Registration ID not found.";
             $alert_type = "error";
+            header("Location: view/login_form_ui.php?error=Invalid credentials");
+            exit();
         }
     } catch (PDOException $e) {
-        $message = "Error: " . $e->getMessage();
-        $alert_type = "error"; 
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
