@@ -32,8 +32,12 @@ if (!$nextRegistrationID) {
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required><br>
+            <label for="role">Select Role:</label>
+            <select id="role" name="role" required>
+                <option value="">-- Select Role --</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select><br>
 
             <label for="contact">Contact Information:</label>
             <input type="text" id="contact" name="contact" required><br>

@@ -15,6 +15,13 @@
             
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="*****" required><br><br>
+            
+            <label for="role">Select Role:</label>
+            <select id="role" name="role" required>
+                <option value="">-- Select Role --</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select><br><br>
 
             <div id="allButton">
                 <button type="submit">Login</button>

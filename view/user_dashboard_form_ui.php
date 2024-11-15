@@ -39,7 +39,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
     <div class="dashboard-container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <h2>Welcome, <?php echo htmlspecialchars($user_email); ?>!</h2>
+            <h2>Welcome, <?php echo htmlspecialchars($name); ?>!</h2>
             <br>
             <br>
             <nav>

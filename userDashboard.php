@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$user_email = $_SESSION['user_email'];
+$name = $_SESSION['ParticipantName'];
 $user_id = $_SESSION['user_id'];
 
 try {
