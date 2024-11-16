@@ -10,11 +10,7 @@ if (!isset($_SESSION['name'])) {
 $name = $_SESSION['name'];
 
 try {
-    $stmt = $conn->prepare("SELECT workshops.Title, workshops.Date, workshops.Location 
-                            FROM workshops 
-                            JOIN registrations ON workshops.WorkshopID = registrations.WorkshopID 
-                            WHERE registrations.RegistrationID = :RegistrationID");
-    $stmt->bindParam(':RegistrationID', $_SESSION['user_id']);
+    $stmt = $conn->prepare("SELECT * FROM workshops");
     $stmt->execute();
     $user_workshops = $stmt->fetchAll();
 } catch (PDOException $e) {

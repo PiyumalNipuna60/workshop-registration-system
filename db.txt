@@ -30,3 +30,5 @@ CREATE TABLE registrations (
 INSERT INTO workshops (Title, Date, Location) 
 VALUES ('Introduction to Web Development', '2024-11-25', 'Colombo, Sri Lanka');
 
+INSERT INTO workshops (Title, Date, Location) 
+VALUES ('Introduction to Mobile Development', '2024-11-25', 'Galle, Sri Lanka');

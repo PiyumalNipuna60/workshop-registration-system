@@ -65,6 +65,8 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th, td {
@@ -81,27 +83,11 @@ td {
     color: #1C5D7C;
 }
 
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #dddddd;
-}
-
 table, th, td {
     border-left: none;
     border-top: none;
     border-right: none;
-}
-
-table {
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-th {
-    border-top: none;
+    border-bottom: none;
 }
 
 td:first-child {
@@ -114,11 +100,6 @@ td:last-child {
 
 tr:hover {
     background-color: #EAF5FC;
-    ;
-}
-
-tr:not(:last-child) td {
-    border-bottom: 1px solid #ddd;
 }
 
 .workshop-list {
