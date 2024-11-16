@@ -48,24 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-     <!-- Sidebar -->
-     <div class="sidebar">
-            <h2>Welcome, <?php echo htmlspecialchars($name); ?>!</h2>
-            <br>
-            <br>
-            <nav>
-                <ul>
-                    <div class="navbar">
-                        <li><a href="user_dashboard_form_ui.php">My Workshops</a></li>
-                        <li><a href="register_workshop_form_ui.php">Register for Workshop</a></li>
-                    </div>
-                    <div class="logout-btn">
-                        <li><a href="login_form_ui.php">Logout</a></li>
-                    </div>
-                </ul>
-            </nav>
-        </div>
-
     <div class="form-container">
         <h1>Register for a Workshop</h1>
         <?php if (isset($message)): ?>
