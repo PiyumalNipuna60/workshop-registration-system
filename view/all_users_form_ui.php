@@ -10,7 +10,7 @@ if (!isset($_SESSION['name'])) {
 $name = $_SESSION['name'];
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM workshops");
+    $stmt = $conn->prepare("SELECT * FROM registrations");
     $stmt->execute();
     $user_workshops = $stmt->fetchAll();
 } catch (PDOException $e) {
@@ -42,7 +42,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                 <ul>
                     <div class="navbar">
                         <li><a href="admin_dashboard_form_ui.php">Workshops</a></li>
-                        <li><a href="all_users_form_ui.php">Users</a></li>
+                        <li><a href="">Users</a></li>
                     </div>
                     <div class="logout-btn">
                         <li><a href="login_form_ui.php">Logout</a></li>
@@ -52,10 +52,9 @@ if (!isset($user_workshops) || empty($user_workshops)) {
         </div>
 
         <div class="main-content" method="GET" action="../adminDashboard.php">
-            <h2>Your Workshops</h2>
+            <h2>All Users</h2>
             <br>
-            <button id="addWorkshopBtn">Add Workshop</button>
-            <br><br>
+            <br>
             <?php if (!empty($user_workshops)): ?>
                 <table>
                     <thead>
@@ -82,52 +81,6 @@ if (!isset($user_workshops) || empty($user_workshops)) {
             <?php endif; ?>
         </div>
     </div>
-
-    <div class="modal-overlay" id="modalOverlay"></div>
-    <div class="modal-container" id="modalContainer">
-        <button class="close-modal" id="closeModalBtn">&times;</button>
-        <h1>Workshop Registration</h1>
-
-        <form id="registrationForm" method="POST" action="../addWorkshop.php">
-            <label for="title">Workshop Title:</label>
-            <input type="text" id="title" name="title" required>
-
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required>
-
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" required>
-
-            <button type="submit" id="addButton">Add Workshop</button>
-        </form>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const addWorkshopBtn = document.getElementById('addWorkshopBtn');
-            const modalOverlay = document.getElementById('modalOverlay');
-            const modalContainer = document.getElementById('modalContainer');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-
-            addWorkshopBtn.addEventListener('click', () => {
-                modalOverlay.classList.add('show');
-                modalContainer.classList.add('show');
-            });
-
-            closeModalBtn.addEventListener('click', () => {
-                modalOverlay.classList.remove('show');
-                modalContainer.classList.remove('show');
-            });
-
-            modalOverlay.addEventListener('click', () => {
-                modalOverlay.classList.remove('show');
-                modalContainer.classList.remove('show');
-            });
-        });
-    </script>
 </body>
 
 </html>

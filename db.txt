@@ -2,10 +2,11 @@ CREATE DATABASE workshop_system;
 USE workshop_system;
 
 CREATE TABLE participants (
-    ParticipantID INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(255),
-    ContactInformation VARCHAR(255),
-    Email VARCHAR(255) UNIQUE
+    ParticipantID INT PRIMARY KEY,
+    ParticipantName VARCHAR(255) NOT NULL,
+    Contact VARCHAR(15) NOT NULL,
+    Email VARCHAR(255) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
 );
 
 
@@ -13,19 +14,27 @@ CREATE TABLE workshops (
     WorkshopID INT AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,
     Date DATE,
+    Time Time,
     Location VARCHAR(255)
 );
 
 CREATE TABLE registrations (
-    RegistrationID INT PRIMARY KEY,
-    ParticipantName VARCHAR(255) NOT NULL,
-    role VARCHAR(255) NOT NULL,
-    Contact VARCHAR(15) NOT NULL,
-    Password VARCHAR(255) NOT NULL,
+    RegistrationID INT AUTO_INCREMENT PRIMARY KEY,
+    ParticipantID INT,
     WorkshopID INT,
     RegistrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ParticipantID) REFERENCES participants(ParticipantID)
     FOREIGN KEY (WorkshopID) REFERENCES workshops(WorkshopID)
 );
+
+CREATE TABLE admin (
+    AdminId INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Contact VARCHAR(15) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+);
+
+INSERT INTO admin VALUES ('piyumal','0782834765','1234');
 
 INSERT INTO workshops (Title, Date, Location) 
 VALUES ('Introduction to Web Development', '2024-11-25', 'Colombo, Sri Lanka');
