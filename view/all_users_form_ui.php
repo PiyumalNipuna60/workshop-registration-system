@@ -10,15 +10,15 @@ if (!isset($_SESSION['name'])) {
 $name = $_SESSION['name'];
 
 try {
-    $stmt = $conn->prepare("SELECT * FROM registrations");
+    $stmt = $conn->prepare("SELECT ParticipantID,ParticipantName,Contact,Email,RegistrationDate FROM participants");
     $stmt->execute();
-    $user_workshops = $stmt->fetchAll();
+    $users= $stmt->fetchAll();
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }
 
-if (!isset($user_workshops) || empty($user_workshops)) {
-    $user_workshops = [];
+if (!isset($users) || empty($users)) {
+    $users = [];
 }
 ?>
 
@@ -51,27 +51,29 @@ if (!isset($user_workshops) || empty($user_workshops)) {
             </nav>
         </div>
 
-        <div class="main-content" method="GET" action="../adminDashboard.php">
+        <div class="main-content">
             <h2>All Users</h2>
             <br>
             <br>
-            <?php if (!empty($user_workshops)): ?>
+            <?php if (!empty($users)): ?>
                 <table>
                     <thead>
                         <tr>
-                            <th>Workshop Title</th>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Location</th>
+                            <th>ParticipantID</th>
+                            <th>ParticipantName</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                            <th>RegistrationDate</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($user_workshops as $workshop): ?>
+                        <?php foreach ($users as $allUsers): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($workshop['Title']); ?></td>
-                                <td><?php echo htmlspecialchars($workshop['Date']); ?></td>
-                                <td><?php echo htmlspecialchars($workshop['Time']); ?></td>
-                                <td><?php echo htmlspecialchars($workshop['Location']); ?></td>
+                                <td><?php echo htmlspecialchars($allUsers['ParticipantID']); ?></td>
+                                <td><?php echo htmlspecialchars($allUsers['ParticipantName']); ?></td>
+                                <td><?php echo htmlspecialchars($allUsers['Contact']); ?></td>
+                                <td><?php echo htmlspecialchars($allUsers['Email']); ?></td>
+                                <td><?php echo htmlspecialchars($allUsers['RegistrationDate']); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

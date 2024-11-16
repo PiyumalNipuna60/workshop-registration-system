@@ -52,7 +52,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
         </div>
 
         <div class="main-content" method="GET" action="../adminDashboard.php">
-            <h2>Your Workshops</h2>
+            <h2>Workshops</h2>
             <br>
             <button id="addWorkshopBtn">Add Workshop</button>
             <br><br>

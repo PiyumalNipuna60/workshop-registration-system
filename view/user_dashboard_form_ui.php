@@ -10,10 +10,11 @@ if (!isset($_SESSION['name'])) {
 $name = $_SESSION['name'];
 
 try {
-    $stmt = $conn->prepare("SELECT workshops.Title, workshops.Date, workshops.Location 
+    $stmt = $conn->prepare("SELECT workshops.Title, workshops.Date, workshops.Time, workshops.Location 
                             FROM workshops 
                             JOIN registrations ON workshops.WorkshopID = registrations.WorkshopID 
-                            WHERE registrations.RegistrationID = :RegistrationID");
+                            WHERE registrations.ParticipantID = :RegistrationID  
+                            ORDER BY registrations.RegistrationDate ASC");
     $stmt->bindParam(':RegistrationID', $_SESSION['user_id']);
     $stmt->execute();
     $user_workshops = $stmt->fetchAll();
@@ -46,7 +47,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                 <ul>
                     <div class="navbar">
                         <li><a href="user_dashboard_form_ui.php">My Workshops</a></li>
-                        <li><a href="register.php">Register for Workshop</a></li>
+                        <li><a href="register_workshop_form_ui.php">Register for Workshop</a></li>
                     </div>
                     <div class="logout-btn">
                         <li><a href="login_form_ui.php">Logout</a></li>
@@ -66,6 +67,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                         <tr>
                             <th>Workshop Title</th>
                             <th>Date</th>
+                            <th>Time</th>
                             <th>Location</th>
                         </tr>
                     </thead>
@@ -74,6 +76,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                             <tr>
                                 <td><?php echo htmlspecialchars($workshop['Title']); ?></td>
                                 <td><?php echo htmlspecialchars($workshop['Date']); ?></td>
+                                <td><?php echo htmlspecialchars($workshop['Time']); ?></td>
                                 <td><?php echo htmlspecialchars($workshop['Location']); ?></td>
                             </tr>
                         <?php endforeach; ?>

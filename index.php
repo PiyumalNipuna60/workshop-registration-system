@@ -1,7 +1,7 @@
 <?php
 include('db.php');
 
-$stmt = $conn->prepare("SELECT MAX(RegistrationID) + 1 AS nextID FROM registrations");
+$stmt = $conn->prepare("SELECT MAX(ParticipantID) + 1 AS nextID FROM participants");
 $stmt->execute();
 $nextRegistrationID = $stmt->fetchColumn();
 if (!$nextRegistrationID) {
@@ -32,12 +32,8 @@ if (!$nextRegistrationID) {
             <label for="name">Name:</label>
             <input type="text" id="name" name="name" required><br>
 
-            <label for="role">Select Role:</label>
-            <select id="role" name="role" required>
-                <option value="">-- Select Role --</option>
-                <option value="admin">Admin</option>
-                <option value="user">User</option>
-            </select><br>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required><br>
 
             <label for="contact">Contact Information:</label>
             <input type="text" id="contact" name="contact" required><br>
@@ -51,6 +47,7 @@ if (!$nextRegistrationID) {
                 $stmt = $conn->prepare("SELECT * FROM workshops");
                 $stmt->execute();
                 $workshops = $stmt->fetchAll();
+                echo "<option value='{''}</option>";
                 foreach ($workshops as $workshop) {
                     echo "<option value='{$workshop['WorkshopID']}'>{$workshop['Title']} - {$workshop['Date']} - {$workshop['Location']}</option>";
                 }

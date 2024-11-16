@@ -69,14 +69,23 @@ button:hover {
     margin-bottom: 20px;
     border-radius: 5px;
     display: none;
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .success {
     background-color: #4CAF50;
-    color: white;
+    color: rgb(204, 54, 54);
 }
 
 .error {
     background-color: #f44336;
-    color: white;
+    color: rgb(231, 63, 63);
+}
+
+#alert {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
 }

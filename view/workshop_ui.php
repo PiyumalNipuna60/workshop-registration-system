@@ -6,39 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <link rel="stylesheet" href="assets/DashBordStyle.css">
-    <style>
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-        }
-
-        .modal.show {
-            display: block;
-        }
-
-        .modal-header {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        .modal-footer {
-            margin-top: 10px;
-            text-align: right;
-        }
-
-        .modal-footer button {
-            padding: 5px 10px;
-        }
-    </style>
 </head>
 
 <body>
@@ -120,17 +87,14 @@
         const addWorkshopForm = document.getElementById('addWorkshopForm');
         const workshopTable = document.getElementById('workshopTable');
 
-        // Open Modal
         addWorkshopBtn.addEventListener('click', () => {
             addWorkshopModal.classList.add('show');
         });
 
-        // Close Modal
         closeModalBtn.addEventListener('click', () => {
             addWorkshopModal.classList.remove('show');
         });
 
-        // Handle Form Submission
         addWorkshopForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = new FormData(addWorkshopForm);
@@ -142,7 +106,6 @@
             const result = await response.json();
 
             if (result.success) {
-                // Update Table
                 const newRow = document.createElement('tr');
                 newRow.innerHTML = `
                     <td>${result.workshop.Title}</td>
@@ -152,7 +115,6 @@
                 `;
                 workshopTable.appendChild(newRow);
 
-                // Close Modal
                 addWorkshopModal.classList.remove('show');
                 addWorkshopForm.reset();
             } else {
