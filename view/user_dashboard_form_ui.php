@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('../db.php');
+include(__DIR__ . '/../db.php');
 
 if (!isset($_SESSION['name'])) {
     header("Location: ../login.php");
@@ -8,9 +8,10 @@ if (!isset($_SESSION['name'])) {
 }
 
 $name = $_SESSION['name'];
+$user_id = $_SESSION['user_id'];
 
 try {
-    $stmt = $conn->prepare("SELECT workshops.Title, workshops.Date, workshops.Time, workshops.Location 
+    $stmt = $conn->prepare("SELECT workshops.WorkshopID, workshops.Title, workshops.Date, workshops.Time, workshops.Location 
                             FROM workshops 
                             JOIN registrations ON workshops.WorkshopID = registrations.WorkshopID 
                             WHERE registrations.ParticipantID = :RegistrationID  
@@ -69,6 +70,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                             <th>Date</th>
                             <th>Time</th>
                             <th>Location</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,6 +80,13 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                                 <td><?php echo htmlspecialchars($workshop['Date']); ?></td>
                                 <td><?php echo htmlspecialchars($workshop['Time']); ?></td>
                                 <td><?php echo htmlspecialchars($workshop['Location']); ?></td>
+                                <td>
+                                    <form method="POST" style="display:inline;" action="../userDashboard.php" onsubmit="return confirm('Are you sure you want to delete this workshop?');">
+                                        <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
+                                        <input type="hidden" name="delete_id" value="<?php echo $workshop['WorkshopID']; ?>">
+                                        <button type="submit" class="delete-btn" id="tableDeleteBtn"> <img src="assets/image/delete-icon.png" alt="Delete" width="20"></button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

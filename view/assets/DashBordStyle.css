@@ -1,3 +1,10 @@
+:root{
+    --bg-black-900: #0056b3;
+    --bg-black-700: #2D9DE5;
+    --bg-black-500: #5290d1;
+    --bg-black-300: #7e9fc2;
+}
+
 body, html {
     margin: 0;
     padding: 0;
@@ -41,7 +48,7 @@ body, html {
 }
 
 .sidebar nav ul li a {
-    color: #2D9DE5;
+    color: var(--bg-black-500);
     text-decoration: none;
 }
 
@@ -80,7 +87,7 @@ th {
 }
 
 td {
-    color: #1C5D7C;
+    color: var(--bg-black-500);
 }
 
 table, th, td {
@@ -181,11 +188,41 @@ tr:hover {
     font-size: 14px;
 }
 
+#tableDeleteBtn{
+    background-color: var(--bg-black-500);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 5px 5px;
+    border: none;
+    width: 50%;
+}
+
+#tableDeleteBtn:hover{
+    background-color: var(--bg-black-700);
+}
+
+button{
+    background-color: var(--bg-black-500);
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 7px 10px;
+    border: none;
+}
+
+button:hover{
+    background-color: var(--bg-black-700);
+}
+
+
 .modal-container button {
     width: 95%;
     padding: 10px 15px;
     border: none;
-    background-color: #007bff;
+    background-color: var(--bg-black-700);
     color: #fff;
     font-size: 16px;
     cursor: pointer;
@@ -194,7 +231,7 @@ tr:hover {
 }
 
 .modal-container button:hover {
-    background-color: #0056b3;
+    background-color: var(--bg-black-900);
 }
 
 .close-modal {

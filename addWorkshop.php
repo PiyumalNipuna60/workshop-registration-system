@@ -25,7 +25,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         header("Location: view/admin_dashboard_form_ui.php");
     }
-
- 
 }
 ?>

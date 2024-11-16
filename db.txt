@@ -23,8 +23,8 @@ CREATE TABLE registrations (
     ParticipantID INT,
     WorkshopID INT,
     RegistrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (ParticipantID) REFERENCES participants(ParticipantID),
-    FOREIGN KEY (WorkshopID) REFERENCES workshops(WorkshopID)
+    FOREIGN KEY (ParticipantID) REFERENCES participants(ParticipantID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (WorkshopID) REFERENCES workshops(WorkshopID)  ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE admin (
@@ -36,8 +36,8 @@ CREATE TABLE admin (
 
 INSERT INTO admin VALUES ('1','piyumal','0782834765','1234');
 
-INSERT INTO workshops (Title, Date, Location) 
-VALUES ('Introduction to Web Development', '2024-11-25', '12:30:00', 'Colombo, Sri Lanka');
+INSERT INTO workshops
+VALUES ('1','Introduction to Web Development', '2024-11-25', '12:30:00', 'Colombo, Sri Lanka');
 
-INSERT INTO workshops (Title, Date, Location) 
-VALUES ('Introduction to Mobile Development', '2024-11-25', '12:30:00', 'Galle, Sri Lanka');
+INSERT INTO workshops
+VALUES ('2','Introduction to Mobile Development', '2024-11-25', '12:30:00', 'Galle, Sri Lanka');

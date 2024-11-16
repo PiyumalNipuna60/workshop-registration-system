@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($workshopID) {
         try {
-            $stmt = $conn->prepare("INSERT INTO registrations (ParticipantID, WorkshopID, RegistrationDate) VALUES (:participantID, :workshopID, Now())");
+            $stmt = $conn->prepare("INSERT INTO registrations VALUES (:participantID, :workshopID, Now())");
             $stmt->bindParam(':participantID', $participantID, PDO::PARAM_INT);
             $stmt->bindParam(':workshopID', $workshopID, PDO::PARAM_INT);
             $stmt->execute();
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="form-container">
         <h1>Register for a Workshop</h1>
         <?php if (isset($message)): ?>
-            <p id="alert"><?php echo htmlspecialchars($message); ?></p>
+            <p style="color: red;"><?php echo htmlspecialchars($message); ?></p>
         <?php endif; ?>
         <form method="POST" action="register_workshop_form_ui.php">
             <label for="workshop_id">Select Workshop:</label>
@@ -64,7 +64,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php endforeach; ?>
             </select>
             <br><br>
-            <button type="submit">Register</button>
+            <div id="allButton">
+                <div>
+                    <a href="user_dashboard_form_ui.php"><button type="button">Back</button></a>
+                </div>
+                <button type="submit">Register</button>
+            </div>
         </form>
     </div>
 </body>

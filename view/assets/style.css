@@ -1,3 +1,9 @@
+:root{
+    --bg-black-900: #0056b3;
+    --bg-black-700: #2D9DE5;
+    --bg-black-500: #5290d1;
+    --bg-black-300: #7e9fc2;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -45,7 +51,7 @@ input, select {
 
 button {
     padding: 10px 15px;
-    background-color: #28a745;
+    background-color: var(--bg-black-700);
     color: white;
     border: none;
     border-radius: 4px;
@@ -53,7 +59,7 @@ button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: var(--bg-black-900);
 }
 
 

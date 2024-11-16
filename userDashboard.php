@@ -1,23 +1,21 @@
 <?php
-session_start();
 include('db.php');
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
+
+// Handle deletion request
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
+    $delete_id = $_POST['delete_id'];
+    $user_id = $_POST['user_id'];
+
+    try {
+        $stmt = $conn->prepare("DELETE FROM registrations WHERE WorkshopID = :delete_id AND ParticipantID = :user_id");
+        $stmt->bindParam(':delete_id', $delete_id, PDO::PARAM_INT);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $message = "Workshop successfully deleted.";
+    } catch (PDOException $e) {
+        $message = "Error deleting workshop: " . $e->getMessage();
+    }
+    header("Location: view/user_dashboard_form_ui.php");
 }
-
-$name = $_SESSION['ParticipantName'];
-$user_id = $_SESSION['user_id'];
-
-try {
-    $stmt = $conn->prepare("SELECT w.Title, w.Date, w.Location FROM registrations r JOIN workshops w ON r.WorkshopID = w.WorkshopID WHERE r.RegistrationID = :user_id");
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $user_workshops = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "Error: " . $e->getMessage();
-}
-
-include 'view/user_dashboard_form_ui.php';
 ?>
