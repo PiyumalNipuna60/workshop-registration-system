@@ -64,6 +64,7 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                             <th>Date</th>
                             <th>Time</th>
                             <th>Location</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +74,12 @@ if (!isset($user_workshops) || empty($user_workshops)) {
                                 <td><?php echo htmlspecialchars($workshop['Date']); ?></td>
                                 <td><?php echo htmlspecialchars($workshop['Time']); ?></td>
                                 <td><?php echo htmlspecialchars($workshop['Location']); ?></td>
+                                <td>
+                                    <form method="POST" style="display:inline;" action="../adminDashboard.php" onsubmit="return confirm('Are you sure you want to delete this workshop?');">
+                                        <input type="hidden" name="delete_id" value="<?php echo $workshop['WorkshopID']; ?>">
+                                        <button type="submit" class="delete-btn" id="tableDeleteBtn"> <img src="assets/image/delete-icon.png" alt="Delete" width="20"></button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_id'])) {
     } catch (PDOException $e) {
         $message = "Error deleting workshop: " . $e->getMessage();
     }
-    header("Location: view/user_dashboard_form_ui.php");
+    header("Location: view/admin_dashboard_form_ui.php");
 }
 
 if (!isset($_SESSION['user_id'])) {
@@ -42,5 +42,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-include 'view/user_dashboard_form_ui.php';
+include 'view/admin_dashboard_form_ui.php';
 ?>

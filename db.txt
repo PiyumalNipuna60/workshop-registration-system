@@ -23,8 +23,8 @@ CREATE TABLE registrations (
     ParticipantID INT,
     WorkshopID INT,
     RegistrationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (ParticipantID) REFERENCES participants(ParticipantID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (WorkshopID) REFERENCES workshops(WorkshopID)  ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (ParticipantID) REFERENCES participants(ParticipantID),
+    FOREIGN KEY (WorkshopID) REFERENCES workshops(WorkshopID)
 );
 
 CREATE TABLE admin (
